@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @EnableWebSecurity
 @EnableMethodSecurity
 class SecurityConfig(private val jwtAuthenticationFilter: JwtAuthenticationFilter) {
-    private val allowedUrls = arrayOf("/",  "/swagger-ui/**", "/v3/**", "/h2-console/**")
+    private val allowedUrls = arrayOf("/",  "/swagger-ui/**", "/v3/**", "/h2-console/**", "/member/sign-in")
 
     @Bean
     fun passwordEncoder() = BCryptPasswordEncoder()

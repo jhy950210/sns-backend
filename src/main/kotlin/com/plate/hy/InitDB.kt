@@ -13,6 +13,6 @@ class InitDB (
     private val encoder: PasswordEncoder
 ): ApplicationRunner {
     override fun run(args: ApplicationArguments?) {
-        memberRepository.save(Member.create("admin", "admin", encoder))
+        memberRepository.save(Member.create("admin", "01051816538", "admin6538", encoder))
     }
 }
