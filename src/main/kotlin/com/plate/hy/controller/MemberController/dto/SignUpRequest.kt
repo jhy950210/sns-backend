@@ -8,5 +8,7 @@ data class SignUpRequest (
     @Schema(description = "유저 휴대폰 번호", example = "01011112222")
     val phoneNumber: String,
     @Schema(description = "유저 비밀번호", example = "1234pass")
-    val password: String
+    val password: String,
+    @Schema(description = "유저 email", example = "test@test.com")
+    val email: String
 )

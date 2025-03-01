@@ -1,0 +1,12 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          # 구글 로그인 추가
+          google:
+            client-id: ${{ secret.GOOGLE_CLIENT_ID }}
+            client-secret: ${{ secret.GOOGLE_CLIENT_SECRET }}
+            scope:
+              - email
+              - profile

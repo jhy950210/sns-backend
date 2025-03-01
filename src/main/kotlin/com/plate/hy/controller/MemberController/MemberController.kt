@@ -3,6 +3,7 @@ package com.plate.hy.controller.MemberController
 import com.plate.hy.service.MemberService
 import com.plate.hy.controller.MemberController.dto.SignUpRequest
 import com.plate.hy.controller.MemberController.dto.SignUpResponse
+import com.plate.hy.domain.constants.Role
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.http.ResponseEntity
@@ -21,7 +22,8 @@ class MemberController(
     @Operation(summary = "회원가입")
     @PostMapping("/sign-up")
     fun signUp(@RequestBody signUpRequest: SignUpRequest): ResponseEntity<SignUpResponse> {
-        val signUpMember = memberService.signUp(signUpRequest.name, signUpRequest.phoneNumber, signUpRequest.password)
+        val signUpMember = memberService.signUp(signUpRequest.name, signUpRequest.phoneNumber, signUpRequest.password, signUpRequest.email)
+        val enum = Role.USER
 
         return ResponseEntity.ok().body(SignUpResponse(id = signUpMember.id, name = signUpMember.name))
     }

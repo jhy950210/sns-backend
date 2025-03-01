@@ -1,5 +1,6 @@
 package com.plate.hy.domain;
 
+import com.plate.hy.domain.constants.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,20 +17,42 @@ public class Member {
     @Column(name = "member_name", nullable = false)
     private String name;
 
-    @Column(name = "member_phone_number", nullable = false)
+    @Column(name = "member_phone_number")
     private String phoneNumber;
 
-    @Column(name = "member_password", nullable = false)
+    @Column(name = "member_email", nullable = false)
+    private String email;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "member_role", nullable = false)
+    private Role role;
+
+    @Column(name = "member_password")
     private String password;
 
-    public static Member create(String name, String phoneNumber, String password, PasswordEncoder passwordEncoder) {
-        return new Member(name, phoneNumber, passwordEncoder.encode(password));
+    public static Member createUser(String name, String phoneNumber, String password, String email, PasswordEncoder passwordEncoder) {
+        return new Member(name, phoneNumber, passwordEncoder.encode(password), email, Role.USER);
     }
 
-    private Member(String name, String phoneNumber, String password) {
+    public static Member createGoogleUser(String name, String email) {
+        return new Member(name, null, null, email, Role.USER);
+    }
+
+    public static Member createAdmin(String name, String phoneNumber, String password, String email, PasswordEncoder passwordEncoder) {
+        return new Member(name, phoneNumber, passwordEncoder.encode(password), email, Role.ADMIN);
+    }
+
+    private Member(String name, String phoneNumber, String password, String email, Role role) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.email = email;
+        this.role = role;
+    }
+
+    public Member update(String name) {
+        //Todo: implement
+        return null;
     }
 
     public Long getId() {
@@ -46,5 +69,13 @@ public class Member {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Role getRole() {
+        return role;
     }
 }

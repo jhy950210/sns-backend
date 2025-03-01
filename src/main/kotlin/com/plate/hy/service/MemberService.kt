@@ -13,7 +13,7 @@ class MemberService(
     private val passwordEncoder: PasswordEncoder
 ) {
 
-    fun signUp(name: String, phoneNumber: String, password: String): Member {
+    fun signUp(name: String, phoneNumber: String, password: String, email: String): Member {
         val createdPhoneNumber = PhoneNumber(phoneNumber).value
         val createdPassword = Password(password).value
 
@@ -21,7 +21,7 @@ class MemberService(
             throw IllegalArgumentException("이미 가입된 휴대폰 번호 입니다.")
         }
 
-        val member = Member.create(name, createdPhoneNumber, createdPassword, passwordEncoder)
+        val member = Member.createUser(name, createdPhoneNumber, createdPassword, email, passwordEncoder)
 
         return memberRepository.save(member)
     }

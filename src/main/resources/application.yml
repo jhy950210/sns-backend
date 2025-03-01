@@ -20,6 +20,8 @@ spring:
   security:
     user:
       password: 1
+  profiles:
+    include: oauth
 
 springdoc:
   default-consumes-media-type: application/json;charset=UTF-8
