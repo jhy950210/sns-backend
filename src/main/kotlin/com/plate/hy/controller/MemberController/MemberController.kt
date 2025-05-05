@@ -1,6 +1,7 @@
 package com.plate.hy.controller.MemberController
 
-import com.plate.hy.service.MemberService
+import com.plate.hy.controller.MemberController.dto.LoginRequest
+import com.plate.hy.service.member.MemberService
 import com.plate.hy.controller.MemberController.dto.SignUpRequest
 import com.plate.hy.controller.MemberController.dto.SignUpResponse
 import io.swagger.v3.oas.annotations.Operation
@@ -26,11 +27,11 @@ class MemberController(
         return ResponseEntity.ok().body(SignUpResponse(id = signUpMember.id, name = signUpMember.name))
     }
 
-//    @Operation(summary = "로그인")
-//    @PostMapping("/login")
-//    fun login(@RequestBody signUpRequest: SignUpRequest): SignUpResponse {
-//        memberService.signUp(signUpRequest.name, signUpRequest.phoneNumber, signUpRequest.password)
-//
-//        return
-//    }
+    @Operation(summary = "로그인")
+    @PostMapping("/login")
+    fun login(@RequestBody request: LoginRequest): ResponseEntity<String> {
+        val token = memberService.login(request.toCommand())
+
+        return ResponseEntity.ok().body(token.accessToken)
+    }
 }

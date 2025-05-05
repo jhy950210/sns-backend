@@ -1,6 +1,6 @@
 package com.plate.hy.repository
 
-import com.plate.hy.domain.Member
+import com.plate.hy.entity.Member
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface MemberRepository: JpaRepository<Member, Long> {

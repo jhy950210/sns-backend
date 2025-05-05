@@ -1,4 +1,4 @@
-package com.plate.hy.domain;
+package com.plate.hy.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,10 +7,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Entity
 @Table(name = "members")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id", nullable = false)
+    @Column(nullable = false)
     private Long id;
 
     @Column(name = "member_name", nullable = false)
@@ -30,21 +31,5 @@ public class Member {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 }

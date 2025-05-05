@@ -22,9 +22,9 @@ class TokenProvider(
     @Value("\${issuer}")
     private val issuer: String
 ) {
-    fun createToken(userSpecification: String) = Jwts.builder()
+    fun createToken(memberId: Long) = Jwts.builder()
         .signWith(SecretKeySpec(secretKey.toByteArray(), SignatureAlgorithm.HS512.jcaName)) // HS512 알고리즘을 사용하여 secretKey를 이용해 서명
-        .setSubject(userSpecification)   // JWT 토큰 제목
+        .setSubject(memberId.toString())
         .setIssuer(issuer)    // JWT 토큰 발급자
         .setIssuedAt(Timestamp.valueOf(LocalDateTime.now()))    // JWT 토큰 발급 시간
         .setExpiration(Date.from(Instant.now().plus(expirationHours, ChronoUnit.HOURS)))    // JWT 토큰의 만료시간 설정

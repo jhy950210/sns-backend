@@ -1,6 +1,6 @@
 package com.plate.hy
 
-import com.plate.hy.domain.Member
+import com.plate.hy.entity.Member
 import com.plate.hy.repository.MemberRepository
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
